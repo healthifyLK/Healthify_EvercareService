@@ -1,9 +1,28 @@
-const { createGoal, getPatientGoals, getGoalById, updateGoal, deleteGoal, getGoalsByCategory, getGoalsByPriority, getOverdueGoals, updateGoalProgress, getGoalsSummary } = require("../services/careGoalService");
+const {
+  createGoal,
+  getPatientGoals,
+  getGoalById,
+  updateGoal,
+  deleteGoal,
+  getGoalsByCategory,
+  getGoalsByPriority,
+  getOverdueGoals,
+  updateGoalProgress,
+  getGoalsSummary,
+} = require("../services/careGoalService");
 
 // Create a new care goal
 async function createGoalController(req, res) {
   try {
-    const { patient_id, provider_id, title, description, category, target_date, priority } = req.body;
+    const {
+      patient_id,
+      provider_id,
+      title,
+      description,
+      category,
+      target_date,
+      priority,
+    } = req.body;
 
     // Validate required fields
     if (!patient_id || !provider_id || !title || !category) {

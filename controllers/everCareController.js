@@ -1,9 +1,23 @@
-const { enrollPatient, getPatientEnrollment, updateEnrollment, terminateEnrollment, getProviderEnrollments, getEnrollmentStats } = require("../services/everCareService");
+const {
+  enrollPatient,
+  getPatientEnrollment,
+  updateEnrollment,
+  terminateEnrollment,
+  getProviderEnrollments,
+  getEnrollmentStats,
+} = require("../services/everCareService");
 
 // Enroll a patient in the Ever Care Program
 async function enrollPatientController(req, res) {
   try {
-    const { patient_id, provider_id, subscription_tier, weekly_consultations, monthly_consultations, home_visits_per_month } = req.body;
+    const {
+      patient_id,
+      provider_id,
+      subscription_tier,
+      weekly_consultations,
+      monthly_consultations,
+      home_visits_per_month,
+    } = req.body;
 
     // Validate required fields
     if (!patient_id || !provider_id || !subscription_tier) {
@@ -19,7 +33,7 @@ async function enrollPatientController(req, res) {
       subscription_tier,
       weekly_consultations: weekly_consultations || 1,
       monthly_consultations: monthly_consultations || 4,
-      home_visits_per_month: home_visits_per_month || 1,
+      home_visits_per_month: home_visits_per_month,
     };
 
     const enrollment = await enrollPatient(enrollmentData);

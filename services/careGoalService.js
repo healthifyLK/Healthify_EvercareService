@@ -189,10 +189,14 @@ async function updateGoalProgress(goalId, patientId) {
     }
 
     const totalTasks = goal.tasks.length;
-    const completedTasks = goal.tasks.filter((task) => task.status === "completed").length;
+    const completedTasks = goal.tasks.filter(
+      (task) => task.status === "completed"
+    ).length;
 
     if (totalTasks > 0) {
-      const progressPercentage = Math.round((completedTasks / totalTasks) * 100);
+      const progressPercentage = Math.round(
+        (completedTasks / totalTasks) * 100
+      );
       await goal.update({ progress_percentage: progressPercentage });
 
       // Update goal status based on progress

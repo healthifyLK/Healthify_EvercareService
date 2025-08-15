@@ -1,4 +1,9 @@
-const { EverCareEnrollment, CareGoal, CareTask, WearableDevice } = require("../models");
+const {
+  EverCareEnrollment,
+  CareGoal,
+  CareTask,
+  WearableDevice,
+} = require("../models");
 const { sequelize } = require("../config/sequelize");
 const axios = require("axios");
 
@@ -6,10 +11,14 @@ const axios = require("axios");
 async function enrollPatient(enrollmentData) {
   try {
     const enrollment = await EverCareEnrollment.create(enrollmentData);
-    
+
     // Create initial care goals based on subscription tier
-    await createInitialGoals(enrollment.patient_id, enrollment.provider_id, enrollment.subscription_tier);
-    
+    await createInitialGoals(
+      enrollment.patient_id,
+      enrollment.provider_id,
+      enrollment.subscription_tier
+    );
+
     return enrollment;
   } catch (error) {
     throw new Error(`Failed to enroll patient: ${error.message}`);
@@ -112,7 +121,7 @@ async function getProviderEnrollments(providerId) {
 async function createInitialGoals(patientId, providerId, subscriptionTier) {
   try {
     const defaultGoals = getDefaultGoalsByTier(subscriptionTier);
-    
+
     for (const goalData of defaultGoals) {
       await CareGoal.create({
         ...goalData,

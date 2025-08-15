@@ -30,7 +30,7 @@ const EverCareEnrollment = sequelize.define(
       defaultValue: "active",
     },
     subscription_tier: {
-      type: DataTypes.ENUM("basic", "premium", "elite"),
+      type: DataTypes.ENUM("basic", "premium", "vital boost"),
       allowNull: false,
       defaultValue: "basic",
     },
@@ -46,8 +46,7 @@ const EverCareEnrollment = sequelize.define(
     },
     home_visits_per_month: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 1,
+      allowNull: true,
     },
     next_review_date: {
       type: DataTypes.DATE,
