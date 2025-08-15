@@ -17,7 +17,7 @@ const EverCareEnrollment = sequelize.define(
     },
     provider_id: {
       type: DataTypes.UUID,
-      allowNull: false,
+      allowNull: true,
     },
     enrollment_date: {
       type: DataTypes.DATE,
@@ -32,17 +32,14 @@ const EverCareEnrollment = sequelize.define(
     subscription_tier: {
       type: DataTypes.ENUM("basic", "premium", "vital boost"),
       allowNull: false,
-      defaultValue: "basic",
     },
     weekly_consultations: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 1,
+      allowNull: true,
     },
     monthly_consultations: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 4,
+      allowNull: true,
     },
     home_visits_per_month: {
       type: DataTypes.INTEGER,
